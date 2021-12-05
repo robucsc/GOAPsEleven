@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 
-public class Doctor : GAgent {
+public class Reuben : GAgent {
 
     new void Start() {
 
         // Call base Start method
         base.Start();
         // Set goal so that it can't be removed so the Doctor can repeat this action
-        SubGoal s1 = new SubGoal("research", 1, false);
+        SubGoal s1 = new SubGoal("protect", 1, false);
         goals.Add(s1, 1);
 
         // Toilet goal
@@ -24,7 +24,7 @@ public class Doctor : GAgent {
         Invoke("NeedRelief", Random.Range(2.0f, 5.0f));
     }
 
-    void GetTired() {
+    void Revenge() {
 
         beliefs.ModifyState("exhausted", 0);
         // Call the get tired method over and over at random times to make the agent
@@ -32,12 +32,15 @@ public class Doctor : GAgent {
         Invoke("GetTired", Random.Range(0.0f, 20.0f));
     }
 
-    void NeedRelief() {
+    void DontJoin() {
 
         beliefs.ModifyState("busting", 0);
         // Call the get NeedRelief method over and over at random times to make the agent
         // go to the loo again
         Invoke("NeedRelief", Random.Range(2.0f, 5.0f));
+        
+        
     }
 
 }
+
