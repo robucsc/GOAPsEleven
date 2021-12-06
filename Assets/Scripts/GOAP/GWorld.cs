@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -57,16 +57,10 @@ public sealed class GWorld {
     private static readonly GWorld instance = new GWorld();
     // Our world states
     private static WorldStates world;
-    // Queue of patients
-    private static ResourceQueue patients;
-    // Queue of cubicles
-    private static ResourceQueue cubicles;
-    // Queue of offices
-    private static ResourceQueue offices;
-    // Queue of toilets
-    private static ResourceQueue toilets;
-    // Queue for the puddles
-    private static ResourceQueue puddles;
+    // Queue of chances for revenge
+    private static ResourceQueue revenge_chance;
+    // Queue of reasons to change agent's mind
+    private static ResourceQueue good_reason;
 
     // Storage for all
     private static Dictionary<string, ResourceQueue> resources = new Dictionary<string, ResourceQueue>();
