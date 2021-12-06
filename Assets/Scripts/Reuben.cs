@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class Reuben : GAgent {
 
@@ -6,41 +6,35 @@ public class Reuben : GAgent {
 
         // Call base Start method
         base.Start();
-        // Set goal so that it can't be removed so the Doctor can repeat this action
-        SubGoal s1 = new SubGoal("protect", 1, false);
+        // This subgoal runs once
+        SubGoal s1 = new SubGoal("dont_join", 1, true);
         goals.Add(s1, 1);
-
-        // Toilet goal
-        SubGoal s2 = new SubGoal("relief", 1, false);
+        // This subgoal runs forever
+        SubGoal s2 = new SubGoal("get_revenge", 1, false);
         goals.Add(s2, 2);
 
-        // Resting goal
-        SubGoal s3 = new SubGoal("rested", 1, false);
-        goals.Add(s3, 3);
-
-        // Call the GetTired() method for the first time
-        Invoke("GetTired", Random.Range(2.0f, 5.0f));
-        // Call the NeedRelief() methd for the first time
-        Invoke("NeedRelief", Random.Range(2.0f, 5.0f));
+        Invoke("Unconvinced", Random.Range(0.0f, 1.0f));
+        Invoke("DesireRevenge", Random.Range(0.0f, 1.0f));
+        Invoke("Curiosity", Random.Range(0.0f, 1.0f));
     }
 
-    void Revenge() {
 
-        beliefs.ModifyState("exhausted", 0);
-        // Call the get tired method over and over at random times to make the agent
-        // get tired again
-        Invoke("GetTired", Random.Range(0.0f, 20.0f));
+    void Unconvinced() {
+        //agent thinks current topic is a bad idea
+        beliefs.ModifyState("not_worth_it", 0);
+        //Doesn't repeat    
+    }
+    
+    void DesireRevenge() {
+        //agent is passively waiting for a chance to get revenge
+        beliefs.ModifyState("looking_for_revenge", 0);
+        //Doesn't repeat 
     }
 
-    void DontJoin() {
-
-        beliefs.ModifyState("busting", 0);
-        // Call the get NeedRelief method over and over at random times to make the agent
-        // go to the loo again
-        Invoke("NeedRelief", Random.Range(2.0f, 5.0f));
-        
-        
+    void Curiosity() {
+        //agent has question about current topic
+        beliefs.ModifyState("have_question", 0);
+        //Doesn't repeat    
     }
 
 }
-
