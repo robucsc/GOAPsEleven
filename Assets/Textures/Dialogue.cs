@@ -11,5 +11,13 @@ public class Dialogue
     public bool isButton;
     public int[] score;
 
+    public Dialogue(string firstName, string[] nextSentences, bool button, int[] nextScore)
+    {
+        name = firstName;
+        sentences = nextSentences;
+        isButton = button;
+        score = nextScore;
+    }
+
 }
 

@@ -69,7 +69,7 @@ public sealed class GWorld {
 
         // Create our world
         world = new WorldStates();
-        // Create patients array
+        /* Create patients array
         patients = new ResourceQueue("", "", world);
         // Add to the resources Dictionary
         resources.Add("patients", patients);
@@ -89,7 +89,7 @@ public sealed class GWorld {
         puddles = new ResourceQueue("Puddle", "FreePuddle", world);
         // Add to the resources Dictionary
         resources.Add("puddles", puddles);
-
+        */
         // Set the time scale in Unity
         Time.timeScale = 5.0f;
     }
