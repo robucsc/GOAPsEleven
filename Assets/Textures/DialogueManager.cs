@@ -105,6 +105,6 @@ public class DialogueManager : MonoBehaviour
         else{
             StartCoroutine(TypeSentence(ReubenResponses[Random.Range(-1, -3)]));
         }
-
+        FindObjectOfType<StoryManager>().Persuade(value);
     }
 }

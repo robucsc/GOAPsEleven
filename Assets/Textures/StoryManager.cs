@@ -116,15 +116,32 @@ public class StoryManager : MonoBehaviour
 
     public void ProgressStory(){
         currentStoryQuestion++;
+        if(currentStoryQuestion == 8){
+            if(Persuasion > 0){
+                string firstName = "Reuben";
+                string[] incomingSentences = {"You've convinced me. I'm in.",};
+                bool button = false;
+                int[] scoreValue = {1, 2};
+                Dialogue newDialogue = new Dialogue(firstName, incomingSentences, button, scoreValue);
+                Storyline.Add(8, newDialogue);
+            }
+            else{
+                string firstName = "Reuben";
+                string[] incomingSentences = {"Get out of my backyard right now before I kill you myself.",};
+                bool button = false;
+                int[] scoreValue = {1, 2};
+                Dialogue newDialogue = new Dialogue(firstName, incomingSentences, button, scoreValue);
+                Storyline.Add(8, newDialogue);
+            }
+        }
         Debug.Log(Storyline[currentStoryQuestion].name);
         var nextStoryState = Storyline[currentStoryQuestion];
         FindObjectOfType<DialogueTrigger>().InsertDialogue(nextStoryState);
+
     }
 
-    void AddElements(){
-    // Bad responses, add sentences here:
-
-        
+    public void Persuade(int change){
+        Persuasion += change;  
     }
 
 }
