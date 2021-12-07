@@ -11,12 +11,17 @@ public class Dialogue
     public bool isButton;
     public int[] score;
 
-    public Dialogue(string firstName, string[] nextSentences, bool button, int[] nextScore)
-    {
+    //no values passed in
+    public Dialogue(){
+        name = "";
+        isButton = false;
+    }
+    //Pass in values
+    public Dialogue(string firstName, string[] incomingSentences, bool button, int[] scoreValue){
         name = firstName;
-        sentences = nextSentences;
+        sentences = incomingSentences;
         isButton = button;
-        score = nextScore;
+        score = scoreValue;
     }
 
 }

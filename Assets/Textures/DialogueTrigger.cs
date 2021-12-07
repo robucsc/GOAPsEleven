@@ -8,6 +8,11 @@ public class DialogueTrigger : MonoBehaviour
     public Dialogue dialogue;
 
 
+    public void InsertDialogue(Dialogue nextDialogue){
+        dialogue = nextDialogue;
+        TriggerDialogue();
+    }
+
     public void TriggerDialogue(){
 
         if (dialogue.isButton == false){

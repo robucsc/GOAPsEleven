@@ -35,10 +35,11 @@ public class ButtonManager : MonoBehaviour
         }  
     }
 
-    public void choiceMade(){
+    public void choiceMade(int value){
         setInactive();
         //Put in code to judge choice/choose next prompt here!!
+        //FindObjectOfType<DialogueManager>().EndDialogue();
+        FindObjectOfType<DialogueManager>().Respond(value);
 
-        
     }
 }

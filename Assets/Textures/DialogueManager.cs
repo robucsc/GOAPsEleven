@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class DialogueManager : MonoBehaviour
 {
     private Queue<string> sentences;
+    private Dictionary<int, string> ReubenResponses;
     public GameObject[] characters;
     public Text nameText;
     public Text dialogueText;
@@ -17,6 +18,15 @@ public class DialogueManager : MonoBehaviour
     {
         sentences = new Queue<string>();
         setInactive();
+        ReubenResponses = new Dictionary<int, string>();
+
+        ReubenResponses.Add(-1, "Yeah yeah blah blah.");
+        ReubenResponses.Add(-2, "Yeah, you gotta be nuts.");
+        ReubenResponses.Add(-3, "Don't think I don't see what you're doin.");
+
+        ReubenResponses.Add(1, "Reuben gives you a smirk");
+        ReubenResponses.Add(2, "You've got my attention");
+        ReubenResponses.Add(3, "Look, we all go way back. I owe you from that thing with the guy in the place, and I'll never forget it.");
     }
 
     //This is where you start the chain of dialogue
@@ -57,9 +67,9 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    void EndDialogue(){
+    public void EndDialogue(){
         setInactive();
-        textBox.SetActive(false);
+        FindObjectOfType<StoryManager>().ProgressStory();
         Debug.Log("End Sentences...");
     }
 
@@ -79,8 +89,22 @@ public class DialogueManager : MonoBehaviour
 
     void setInactive (){
         //Disable the image for each character
+        textBox.SetActive(false);
         foreach(GameObject character in characters){
             character.SetActive(false);
         }  
+    }
+
+    public void Respond(int value){
+        characters[0].SetActive(true);
+        textBox.SetActive(true);
+        StopAllCoroutines();
+        if(value > 0){
+            StartCoroutine(TypeSentence(ReubenResponses[Random.Range(1, 3)]));
+        }
+        else{
+            StartCoroutine(TypeSentence(ReubenResponses[Random.Range(-1, -3)]));
+        }
+
     }
 }
