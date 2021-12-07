@@ -22,11 +22,11 @@ public class DialogueManager : MonoBehaviour
 
         ReubenResponses.Add(-1, "Yeah yeah blah blah.");
         ReubenResponses.Add(-2, "Yeah, you gotta be nuts.");
-        ReubenResponses.Add(-3, "Don't think I don't see what you're doin.");
+        ReubenResponses.Add(-3, "Don’t think I don’t see what you’re doin.");
 
         ReubenResponses.Add(1, "Reuben gives you a smirk");
-        ReubenResponses.Add(2, "You've got my attention");
-        ReubenResponses.Add(3, "Look, we all go way back. I owe you from that thing with the guy in the place, and I'll never forget it.");
+        ReubenResponses.Add(2, "You’ve got my attention");
+        ReubenResponses.Add(3, "Look, we all go way back. I owe you from that thing with the guy in the place, and I’ll never forget it.");
     }
 
     //This is where you start the chain of dialogue
@@ -100,11 +100,14 @@ public class DialogueManager : MonoBehaviour
         textBox.SetActive(true);
         StopAllCoroutines();
         if(value > 0){
-            StartCoroutine(TypeSentence(ReubenResponses[Random.Range(1, 3)]));
+            int choiceMade = Random.Range(1, 3);
+            StartCoroutine(TypeSentence(ReubenResponses[choiceMade]));
         }
         else{
-            StartCoroutine(TypeSentence(ReubenResponses[Random.Range(-1, -3)]));
+            int choiceMade = Random.Range(-1, -3);
+            StartCoroutine(TypeSentence(ReubenResponses[choiceMade]));
         }
+        
         FindObjectOfType<StoryManager>().Persuade(value);
     }
 }
