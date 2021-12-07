@@ -9,6 +9,7 @@ public class ButtonManager : MonoBehaviour
     public GameObject[] buttons;
     public Text[] buttonText;
     public int[] score;
+    public GameObject Danny;
 
     // Start is called before the first frame update
     void Start()
@@ -26,10 +27,12 @@ public class ButtonManager : MonoBehaviour
             buttonText[x].text = sentence;
             x++;
         }  
+        Danny.SetActive(true);
     }
 
     void setInactive (){
         //Disable the buttons
+        
         foreach(GameObject button in buttons){
             button.SetActive(false);
         }  
@@ -37,6 +40,7 @@ public class ButtonManager : MonoBehaviour
 
     public void choiceMade(int value){
         setInactive();
+        Danny.SetActive(false);
         //Put in code to judge choice/choose next prompt here!!
         //FindObjectOfType<DialogueManager>().EndDialogue();
         FindObjectOfType<DialogueManager>().Respond(value);

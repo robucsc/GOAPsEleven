@@ -89,7 +89,7 @@ public class DialogueManager : MonoBehaviour
 
     void setInactive (){
         //Disable the image for each character
-        textBox.SetActive(false);
+        //textBox.SetActive(false);
         foreach(GameObject character in characters){
             character.SetActive(false);
         }  
